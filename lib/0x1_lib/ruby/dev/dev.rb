@@ -3,7 +3,7 @@
 module X module Lib module Dev
   require 'minitest/autorun'
   require File.join(Dir.home, ".0x1/00mu/00sourcing/0x1_lib/lib/"+
-                    "0x1_lib/toolkit/standard.rb")
+                    "0x1_lib/ruby/toolkit/standard.rb")
 
   def x__test_datadir_active_ini(s_test_dir, s_test_datadir_suffix)
     if s_test_datadir_suffix == ''

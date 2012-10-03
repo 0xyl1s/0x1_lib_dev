@@ -2,7 +2,7 @@
 
 module X module Lib module Dev module Toolkit module Filesdirs
   require File.join(Dir.home, ".0x1/00mu/00sourcing/0x1_lib_dev/lib/"+
-                    "0x1_lib/dev/dev.rb")
+                    "0x1_lib/ruby/dev/dev.rb")
   include X::Lib::Dev
 
   class TestXLibToolkitFilesdirs < TestXLib
@@ -10,7 +10,7 @@ module X module Lib module Dev module Toolkit module Filesdirs
 
     def setup
       @test_file_full = File.absolute_path(__FILE__)
-      @lib_dir = x__filejsourcing("0x1_lib/lib/0x1_lib/toolkit")
+      @lib_dir = x__filejsourcing("0x1_lib/lib/0x1_lib/ruby/toolkit")
       @lib_file = ''
       @test_datadir_suffix = 'filesdirs'
       super

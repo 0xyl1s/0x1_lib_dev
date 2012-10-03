@@ -1,26 +1,18 @@
 # encoding: utf-8
 
-module X module Lib module Dev module Toolkit module Xutils
+module X module Lib module Dev module Toolkit module Strings
   require File.join(Dir.home, ".0x1/00mu/00sourcing/0x1_lib_dev/lib/"+
-                    "0x1_lib/dev/dev.rb")
+                    "0x1_lib/ruby/dev/dev.rb")
   include X::Lib::Dev
 
-  class TestXLibToolkitXutils < TestXLib
+  class TestXLibToolkitStrings < TestXLib
 
     def setup
       @test_file_full = File.absolute_path(__FILE__)
-      @lib_dir = x__filejsourcing("0x1_lib/lib/0x1_lib/toolkit")
+      @lib_dir = x__filejsourcing("0x1_lib/lib/0x1_lib/ruby/toolkit")
       @lib_file = ''
       @test_datadir_suffix = false
       super
-    end
-
-    def test_x__
-      assert_equal('0xyl1s α --', x__)
-    end
-
-    def test_x__user_homedir
-      assert_equal(`echo -n $HOME`, x__user_homedir())
     end
 
     def test_x__is_a_string?

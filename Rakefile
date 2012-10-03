@@ -2,7 +2,7 @@
 
 desc "Run all sub-unit tests"
 task :alltestunit do
-  Dir.chdir("test/0x1_lib/toolkit/") { sh "rake test" }
+  Dir.chdir("test/0x1_lib/ruby/toolkit/") { sh "rake test" }
 end
 
 task :default => :alltestunit
