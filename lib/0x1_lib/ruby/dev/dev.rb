@@ -47,7 +47,7 @@ module X module Lib module Dev
   end
 
   def x__test_infos(s_message)
-    puts "#{x__grandparent_method_name} >> #{s_message}" if @xti
+    puts "#{x__method_caller_name(1)} >> #{s_message}" if @xti
   end
   alias :x__ti :x__test_infos
 
