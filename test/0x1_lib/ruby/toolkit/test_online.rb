@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-module X module Lib module Dev module Toolkit module Filesdirs
+module X module Lib module Dev module Toolkit module Online
   require File.join(Dir.home, ".0x1/00mu/00sourcing/0x1_lib_dev/lib/"+
                     "0x1_lib/ruby/dev/dev.rb")
   include X::Lib::Dev
@@ -9,44 +9,20 @@ module X module Lib module Dev module Toolkit module Filesdirs
 
     def setup
       @xti = true
-      @xmodules2load = [:standard]
+      @xmodules2load = [:standard, :online]
       @test_file_full = File.absolute_path(__FILE__)
       @lib_dir = x__filejsourcing("0x1_lib/lib/0x1_lib/ruby/toolkit")
       @lib_file = ''
-      @test_datadir_suffix = 'filesdirs'
+      @test_datadir_suffix = false
       super
     end
 
-    def test_x__is_a_symlink?
-      skip "untested yet..."
-    end
-
-    def test_x__abort_if_is_a_symlink
-      skip "untested yet..."
-    end
-
-    def test_x__symlink_target
-      skip "untested yet..."
-    end
-
-    def test_x__abort_unless_is_a_symlink
-      skip "untested yet..."
-    end
-
-    def test_x__symlink_create
-      skip "untested yet..."
-    end
-
-    def test_x__abort_unless_symlink_create
-      skip "untested yet..."
-    end
-
-    def test_x__symlink_delete
-      skip "untested yet..."
-    end
-
-    def test_x__abort_unless_symlink_delete
-      skip "untested yet..."
+    def test_x__online
+      skip
+      puts x__online
+      tested_value = xlevel1
+      target_value = 'test_x__method_caller_name'
+      assert_equal target_value, tested_value
     end
 
   end

@@ -37,6 +37,13 @@ module X module Lib module Dev
     @lib_file_full = x__filej(s_lib_dir, @lib_file)
     x__abort_unless_is_a_file(@lib_file_full, :verbose)
     @lib_file_corename = File.basename(@lib_file).sub(/.rb$/, '')
+    if @lib_datadir
+      puts 'rt'
+      if @lib_datadir == ''
+        @lib_datadir = "#{@lib_full}/#{@lib_file_corename}"
+      end
+      x__abort_unless_is_a_dir @lib_datadir
+    end
   end
 
   def x__test_ini()
@@ -57,7 +64,7 @@ module X module Lib module Dev
 
     def setup
       x__test_ini()
-      x__lib_load_modules([:standard])
+      x__lib_load_modules(@xmodules2load)
     end
 
     def teardown

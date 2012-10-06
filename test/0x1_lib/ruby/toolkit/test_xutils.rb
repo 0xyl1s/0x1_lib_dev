@@ -8,6 +8,8 @@ module X module Lib module Dev module Toolkit module Xutils
   class TestXLibToolkitXutils < TestXLib
 
     def setup
+      @xti = true
+      @xmodules2load = [:standard]
       @test_file_full = File.absolute_path(__FILE__)
       @lib_dir = x__filejsourcing("0x1_lib/lib/0x1_lib/ruby/toolkit")
       @lib_file = ''
