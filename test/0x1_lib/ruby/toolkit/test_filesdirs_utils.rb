@@ -5,20 +5,19 @@ module X module Lib module Dev module Toolkit module Filesdirs
                     "0x1_lib/ruby/dev/dev.rb")
   include X::Lib::Dev
 
-  class TestXLibToolkitFilesdirs < TestXLib
+  class TestXLibToolkitFilesdirsUtils < TestXLib
 
     def setup
-      @xti = true
-      @xmodules2load = [:standard]
+      @xti = false
       @test_file_full = File.absolute_path(__FILE__)
       @lib_dir = x__filejsourcing("0x1_lib/lib/0x1_lib/ruby/toolkit")
       @lib_file = ''
-      @test_datadir_suffix = 'filesdirs'
+      @test_datadir_suffix = ''
       super
     end
 
     def test_x__rel_abs_path
-      rel_path = 'filesdirs/active'
+      rel_path = 'filesdirs_utils/active'
       tested_value = x__rel_abs_path(Dir.pwd, rel_path)
       target_value = File.absolute_path %x'(cd #{rel_path} ; pwd)'.chomp
       assert_equal target_value, tested_value
@@ -33,16 +32,20 @@ module X module Lib module Dev module Toolkit module Filesdirs
     end
 
     def test_x__abort_unless_rel_abs_path
-      rel_path = './filesdirs/active'
+      rel_path = './filesdirs_utils/active'
       ref_dir = File.absolute_path %x'(cd #{rel_path} ; pwd)'.chomp
 
       tested_value = x__abort_unless_rel_abs_path(@test_dir, rel_path, :verb)
       assert_equal ref_dir, tested_value
 
-      assert_raises SystemExit do
-        bogus_dir = './bogus'
-        x__abort_unless_rel_abs_path(@test_dir, bogus_dir)
+      out, err = capture_io do
+        assert_raises SystemExit do
+          bogus_dir = './bogus'
+          x__abort_unless_rel_abs_path(@test_dir, bogus_dir)
+        end
       end
+      error_message = /xE: \S* is not a valid path\n/
+      assert_match out, error_message
     end
 
     def test_x__files_list_filtered

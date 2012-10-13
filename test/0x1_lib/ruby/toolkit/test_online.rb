@@ -5,7 +5,7 @@ module X module Lib module Dev module Toolkit module Online
                     "0x1_lib/ruby/dev/dev.rb")
   include X::Lib::Dev
 
-  class TestXLibToolkitFilesdirs < TestXLib
+  class TestXLibToolkitOnline < TestXLib
 
     def setup
       @xti = true

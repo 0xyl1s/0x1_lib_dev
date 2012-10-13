@@ -5,11 +5,10 @@ module X module Lib module Dev module Toolkit module ModulesClassesMethods
                     "0x1_lib/ruby/dev/dev.rb")
   include X::Lib::Dev
 
-  class TestXLibToolkitFilesdirs < TestXLib
+  class TestXLibToolkitMethods < TestXLib
 
     def setup
       @xti = true
-      @xmodules2load = [:standard]
       @test_file_full = File.absolute_path(__FILE__)
       @lib_dir = x__filejsourcing("0x1_lib/lib/0x1_lib/ruby/toolkit")
       @lib_file = ''
