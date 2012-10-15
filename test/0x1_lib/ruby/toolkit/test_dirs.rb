@@ -46,7 +46,7 @@ module X module Lib module Dev module Toolkit module Filesdirs
         end
       end
       error_message = /xE: s_dir_fullpath must begin with a slash (.*)\n/
-      assert_match err, error_message
+      assert_match out, error_message
       tested_value1 = x__dir_path_parse_into_array('/3eclipses/production/pima/0xyl1s/0x1_lib_dev/test/0x1_lib/toolkit/dirs/source/hierarchy')
       target_value1 = %w[3eclipses production pima 0xyl1s 0x1_lib_dev test 0x1_lib toolkit dirs source hierarchy]
       assert_equal target_value1, tested_value1
@@ -61,21 +61,34 @@ module X module Lib module Dev module Toolkit module Filesdirs
       assert_equal path3, tested_value3
     end
 
-    def test_x__dir_traverse_path_to_find
+    def test_x__dir_traverse_path_to_find_files
       x__ti "xI: should abort unless path is real"
       out, err = capture_io do
         assert_raises SystemExit do
-          x__dir_traverse_path_to_find('/bogus/path', 'toolkit')
+          x__dir_traverse_path_to_find_files('/bogus/path', 'toolkit')
         end
       end
       error_message = /xE: can't access directory:\n.*\n/
       assert_match out, error_message
+      #
       x__ti "xI: should return false if path exists but doesn't contain searched item"
-      #refute x__dir_traverse_path_to_find(@test_datadir_active, 'bogus')
+      refute x__dir_traverse_path_to_find_files(@test_datadir_active, 'bogus')
+      x__ti "xI: should return an array containing fullpath of matched files"
+      tested_path = "#{@test_datadir_active}/hierarchy/level1/level2a"
+      tested_value = x__dir_traverse_path_to_find_files(tested_path, 'file1')
+      target_value = ["#{@test_datadir_active}/hierarchy/file1",
+        "#{@test_datadir_active}/hierarchy/level1/file1"
+      ]
+      assert_equal tested_value, target_value
     end
 
     def test_x__dir_list_non_recursive
-      skip "untested yet..."
+      x__ti "xI: should return an array containing relative path of the"+
+        "inspected directory's files"
+      tested_path = "#{@test_datadir_active}/hierarchy/level1"
+      tested_value = x__dir_list_non_recursive(tested_path)
+      target_value = %w[file1 level1check level2a .level2b].sort
+      assert_equal tested_value, target_value
     end
 
     def test_x__dir_is_empty?
